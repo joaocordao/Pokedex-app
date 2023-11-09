@@ -5,11 +5,11 @@ let pokemonList = [
     { name: 'Nidoking', height: 1.4 , types: ['ground', 'poison']}
 ];
 
-for (let i=0; i < pokemonList.length; i++){
-    if (pokemonList[i].height < 1.3){
-        console.log(pokemonList[i].name + " (height: " + pokemonList[i].height + " )");
+pokemonList.forEach(function(pokemonList) {
+    if (pokemonList.height < 1.3){
+    console.log(pokemonList.name + " (height: " + pokemonList.height + " )");
     }
-    else if (pokemonList[i].height >= 1.3){
-        console.log(pokemonList[i].name + " (height: " + pokemonList[i].height + " )" + " - Wow, that's big!");
+    else if (pokemonList.height >= 1.3){
+    console.log(pokemonList.name + " (height: " + pokemonList.height + " )" + " - Wow, that's big!");
     }
-}
+});
