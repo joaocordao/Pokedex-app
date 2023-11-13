@@ -6,22 +6,24 @@ let pokemonRepository = (function () {
         { name: 'Bulbasaur', height: 0.7 , types: ['grass', 'poison']},
         { name: 'Nidoking', height: 1.4 , types: ['ground', 'poison']}
     ];
+        
+    function add (pokemon) {
+        pokemonList.push (pokemon);
+    }
 
     function getAll () {
         return pokemonList;
     } 
 
-    function add (pokemon) {
-        pokemonList.push(pokemon);
-    }
     return {
-        getAll: getAll,
-        add: add
-    }
-})()
+        add: add,
+        getAll: getAll
+    };
+})();
 
-    console.log(pokemonRepository.getAll());
-    console.log(pokemonRepository.add());
+    console.log(pokemonRepository.getAll);
+    pokemonRepository.add({name: 'Pikachu' });
+    console.log(pokemonRepository.add);
     
     pokemonList.forEach(function(pokemonList) {
         if (pokemonList.height < 1.3){
