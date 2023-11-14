@@ -8,7 +8,7 @@ let pokemonRepository = (function () {
     ];
         
     function add (pokemon) {
-        pokemonList.push (pokemon);
+     pokemonList.push (pokemon);
     }
 
     function getAll () {
@@ -19,17 +19,20 @@ let pokemonRepository = (function () {
         add: add,
         getAll: getAll
     };
+    
 })();
 
-    console.log(pokemonRepository.getAll);
-    pokemonRepository.add({name: 'Pikachu' });
-    console.log(pokemonRepository.add);
-    
-    pokemonList.forEach(function(pokemonList) {
+    pokemonRepository.add({name: 'Slowbro', height: 1.6, types: ['psychic', 'water'] });
+
+    pokemonRepository.getAll().forEach(function(pokemonList) {
         if (pokemonList.height < 1.3){
         console.log(pokemonList.name + " (height: " + pokemonList.height + " )");
         }
         else if (pokemonList.height >= 1.3){
         console.log(pokemonList.name + " (height: " + pokemonList.height + " )" + " - Wow, that's big!");
         }
+        document.write("<p>" + pokemonList.name + "</p>");
     });
+
+   
+  
