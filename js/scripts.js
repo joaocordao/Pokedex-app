@@ -26,12 +26,11 @@ let pokemonRepository = (function () {
 
     pokemonRepository.getAll().forEach(function(pokemonList) {
         if (pokemonList.height < 1.3){
-        console.log(pokemonList.name + " (height: " + pokemonList.height + " )");
+        document.write("<p>" + pokemonList.name + " (height: " + pokemonList.height + " )" + "</p>");
         }
         else if (pokemonList.height >= 1.3){
-        console.log(pokemonList.name + " (height: " + pokemonList.height + " )" + " - Wow, that's big!");
+        document.write("<p>" + pokemonList.name + " (height: " + pokemonList.height + " )" + " - Wow, that's big!" + "</p>");
         }
-        document.write("<p>" + pokemonList.name + "</p>");
     });
 
    
