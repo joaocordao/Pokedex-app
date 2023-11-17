@@ -15,23 +15,37 @@ let pokemonRepository = (function () {
         return pokemonList;
     } 
 
+    function showDetails(pokemonList) {
+        console.log(pokemonList);
+    }
+
+    function addListItem(pokemonList){
+        let newElement = document.querySelector(".pokemon-list");
+        let listItem = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemonList.name;
+        button.classList.add("button-class");    
+        listItem.appendChild(button);
+        newElement.appendChild(listItem);
+        //adding an event listener to a click
+        button.addEventListener('click', function () {
+            showDetails(pokemonList);
+          });
+    }
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem
     };
     
 })();
 
     pokemonRepository.add({name: 'Slowbro', height: 1.6, types: ['psychic', 'water'] });
 
-    pokemonRepository.getAll().forEach(function(pokemonList) {
-        if (pokemonList.height < 1.3){
-        document.write("<p>" + pokemonList.name + " (height: " + pokemonList.height + " )" + "</p>");
-        }
-        else if (pokemonList.height >= 1.3){
-        document.write("<p>" + pokemonList.name + " (height: " + pokemonList.height + " )" + " - Wow, that's big!" + "</p>");
-        }
+    pokemonRepository.getAll().forEach(function (pokemonList) {
+        pokemonRepository.addListItem(pokemonList);
     });
 
-   
+
   
