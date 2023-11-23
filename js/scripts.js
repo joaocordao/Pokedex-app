@@ -1,51 +1,81 @@
 // array of pokemons
 let pokemonRepository = (function () {
 
-    let pokemonList = [
-        { name: 'Fearow', height: 1.2 , types: ['flying', 'normal']},
-        { name: 'Bulbasaur', height: 0.7 , types: ['grass', 'poison']},
-        { name: 'Nidoking', height: 1.4 , types: ['ground', 'poison']}
-    ];
-        
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+          
     function add (pokemon) {
-     pokemonList.push (pokemon);
+        pokemonList.push (pokemon);
     }
 
     function getAll () {
         return pokemonList;
     } 
 
-    function showDetails(pokemonList) {
-        console.log(pokemonList);
+    function addListItem(pokemon){
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");    
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+        //adding an event listener to a click
+        button.addEventListener('click', function (event) {
+            showDetails(pokemon);
+        });
     }
 
-    function addListItem(pokemonList){
-        let newElement = document.querySelector(".pokemon-list");
-        let listItem = document.createElement("li");
-        let button = document.createElement("button");
-        button.innerText = pokemonList.name;
-        button.classList.add("button-class");    
-        listItem.appendChild(button);
-        newElement.appendChild(listItem);
-        //adding an event listener to a click
-        button.addEventListener('click', function () {
-            showDetails(pokemonList);
-          });
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+                console.log(pokemon);
+            });
+        }).catch (function (e) {
+            console.error (e);
+        })
+    }
+
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            // Now we add the details to the item
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function () {
+          console.log(item);
+        });
     }
 
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
     };
-    
 })();
 
-    pokemonRepository.add({name: 'Slowbro', height: 1.6, types: ['psychic', 'water'] });
-
-    pokemonRepository.getAll().forEach(function (pokemonList) {
-        pokemonRepository.addListItem(pokemonList);
+    pokemonRepository.loadList().then(function() {
+        // Now the data is loaded!
+        pokemonRepository.getAll().forEach(function (pokemon) {
+            pokemonRepository.addListItem(pokemon);
     });
-
-
-  
+});
