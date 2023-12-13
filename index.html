@@ -4,34 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pokedex App</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="js/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Pokedex App</h1>
-    <button id="show-modal">Show Pokemon List</button>
-    <div class="container">
-        <ul class="list-group list-unstyled">
-        </ul>
-      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="modalLabel">Pokemon List</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      ...
-                  </div>
-              </div>
-          </div>
+    <h1>Pokedex</h1>
+    <button id="show-modal">Pokemon List</button>
+      <div id="modal-container">
       </div>
-    </div>
-    <ul class="pokemon-list"></ul>
-    <div id="image-container"></div>
-    <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
+    <script src="js/promise-polyfill.js"></script>
     <script src="js/scripts.js"></script>
-  </body>
+</body>
 </html>
