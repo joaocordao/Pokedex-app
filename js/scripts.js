@@ -94,7 +94,7 @@ let pokemonRepository = (function () {
 
         // how many types does the pokemon have
         function typeCount(item) {
-            if (item.type.length === 2) {
+            if (item.types.length === 2) {
                 return item.types[0].type.name + ', ' + item.types[1].type.name;
             }   else {
                 return item.types[0].type.name;
