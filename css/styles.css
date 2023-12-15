@@ -3,10 +3,6 @@ body {
   width: auto;
 }
 
-ul {
-  list-style: none;
-}
-
 .button-class {
   background-color: white;
   border: 2px solid red;
@@ -23,14 +19,21 @@ ul {
 }
 
 .button-class:hover,
-.button.class:focus,
-.button.class:active {
+.button-class:focus,
+.button-class:active {
   cursor: pointer;
   background-color: red;
   color:white
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+
+/* modal styling*/
 #modal-container {
   display: none;
 }
@@ -73,12 +76,13 @@ ul {
   background: none;
   color: #777;
   text-decoration: underline;
+  cursor: pointer;
 }
 
-.modal h1 {
-  margin-top: 0;
-}
-
-.modal p {
-  margin-bottom: 0;
+.modal img {
+  margin-right: 30px;
+  margin-top: -100px;
+  float: right;
+  width: 200px;
+  height: auto;
 }
