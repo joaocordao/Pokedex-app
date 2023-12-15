@@ -12,11 +12,6 @@ let pokemonRepository = (function () {
         return pokemonList;
     } 
 
-    function showDetails(item) {
-        pokemonRepository.loadDetails(item).then(function () {
-          showModal(item);
-        });
-    }
 
     function addListItem(pokemon){
         let pokemonList = document.querySelector(".pokemon-list");
@@ -67,6 +62,12 @@ let pokemonRepository = (function () {
         });
     }
 
+    function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function () {
+          showModal(item);
+        });
+    }
+
     // creating a  modal container
     function showModal(item) {
         let modalContainer = document.querySelector('#modal-container');
@@ -93,7 +94,7 @@ let pokemonRepository = (function () {
 
         // how many types does the pokemon have
         function typeCount(item) {
-            if (item.type.lenght === 2) {
+            if (item.type.length === 2) {
                 return item.types[0].type.name + ', ' + item.types[1].type.name;
             }   else {
                 return item.types[0].type.name;
@@ -144,7 +145,6 @@ let pokemonRepository = (function () {
         hideModal: hideModal
     }
 })();
-
 
     pokemonRepository.loadList().then(function() {
         // Now the data is loaded!
