@@ -12,20 +12,28 @@ let pokemonRepository = (function () {
         return pokemonList;
     } 
 
-
-    function addListItem(pokemon){
+    function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
+    
         // creating li element inside the ul
         let listpokemon = document.createElement("li");
+    
         // creating button element inside the li
         let button = document.createElement("button");
         button.innerText = pokemon.name;
-        button.classList.add("button-class");    
+        button.classList.add("btn", "btn-primary", "button-class");
+    
+        // Add data-toggle and data-target attributes for Bootstrap modal
+        button.setAttribute("data-toggle", "modal");
+        button.setAttribute("data-target", "#pokemonModal");
+    
         // Append button to the li listpokemon as its child
         listpokemon.appendChild(button);
+    
         // Append the li listpokemon to the ul pokemonList as its child
         pokemonList.appendChild(listpokemon);
-        //adding an event listener to a click
+    
+        // adding an event listener to a click
         button.addEventListener('click', function (event) {
             showDetails(pokemon);
         });
@@ -70,23 +78,25 @@ let pokemonRepository = (function () {
 
     // creating a  modal container
     function showModal(item) {
-        let modalContainer = document.querySelector('#modal-container');
+        let modalContainer = document.querySelector('#pokemonModal');
 
-        //Clear all existing modal content
-        modalContainer.innerHTML = '';
+        // Clear all existing modal content
+        modalContainer.querySelector('.modal-body').innerHTML = '';
 
         let modal = document.createElement('div');
-        modal.classList.add('modal');
+        modal.classList.add('modal-content');
 
-        //Add the new modal content
+        // Add the new modal content
         let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+        closeButtonElement.classList.add('close');
+        closeButtonElement.setAttribute('type', 'button');
+        closeButtonElement.setAttribute('data-dismiss', 'modal');
+        closeButtonElement.innerHTML = '&times;';
 
         modal.appendChild(closeButtonElement);
 
-        let titleElement = document.createElement('h1');
+        let titleElement = document.createElement('h5');
+        titleElement.classList.add('modal-title');
         titleElement.innerText = item.name;
 
         let heightElement = document.createElement('p');
@@ -96,7 +106,7 @@ let pokemonRepository = (function () {
         function typeCount(item) {
             if (item.types.length === 2) {
                 return item.types[0].type.name + ', ' + item.types[1].type.name;
-            }   else {
+            } else {
                 return item.types[0].type.name;
             }
         }
@@ -107,17 +117,21 @@ let pokemonRepository = (function () {
         let imgElement = document.createElement('img');
         imgElement.src = item.imageUrl;
 
-        modalContainer.appendChild(modal);
-        modal.appendChild(titleElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(typeElement);
-        modal.appendChild(imgElement);
-        modalContainer.classList.add('is-visible');
+        let modalBody = modalContainer.querySelector('.modal-body');
+        modalBody.appendChild(titleElement);
+        modalBody.appendChild(heightElement);
+        modalBody.appendChild(typeElement);
+        modalBody.appendChild(imgElement);
+
+        modalContainer.querySelector('.modal-dialog').appendChild(modal);
+
+        modalContainer.classList.add('show');
+        modalContainer.style.display = 'block';
 
         modalContainer.addEventListener('click', (e) => {
             let target = e.target;
             if (target === modalContainer) {
-              hideModal();    
+                hideModal();
             }
         });
     }

@@ -1,88 +1,91 @@
 body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
   text-align: center;
-  width: auto;
+  color: #007bff; /* Light blue shade */
+}
+
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+  text-align: center; /* Center the buttons */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemon-list li {
+  margin: 12px; /* Adjusted margin */
+  width: calc(25% - 24px); /* 25% width with margins considered */
+  box-sizing: border-box;
 }
 
 .button-class {
-  background-color: white;
-  border: 2px solid red;
-  border-radius: 4px;
-  padding: 16px 32px;
-  margin:6px;
-  width: 15em;
+  display: inline-block; /* Display buttons inline */
+  width: 100%; /* 100% width within each list item */
+  padding: 12px; /* Adjusted padding */
+  background-color: #007bff; /* Light blue shade */
+  color: #fff;
+  border: none;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 14 px;
-  font-weight: 700;
-  transition-duration: 2s;
-}
-
-.button-class:hover,
-.button-class:focus,
-.button-class:active {
   cursor: pointer;
-  background-color: red;
-  color:white
+  border-radius: 8px;
+  font-family: 'Caveat', cursive; /* Fancy font */
+  font-size: 36px; /* Adjusted font size */
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.button-class:hover {
+  background-color: #0056b3; /* Darker blue shade on hover */
 }
 
-
-/* modal styling*/
-#modal-container {
+.modal {
   display: none;
-}
-
-#modal-container.is-visible {
   position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999; 
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto; 
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  color: #007bff; /* Light blue shade */
+  font-family: 'Caveat', cursive; /* Fancy font */
+  font-size: 24px; /* Adjusted font size */
 }
 
 .modal-close {
-  float: right;
-  border: 0;
   background: none;
-  color: #777;
-  text-decoration: underline;
+  border: none;
+  font-size: 1.8em; /* Adjusted font size */
+  color: #007bff; /* Light blue shade */
   cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-.modal img {
-  margin-right: 30px;
-  margin-top: -100px;
-  float: right;
-  width: 200px;
-  height: auto;
+.modal-close:hover {
+  color: #0056b3; /* Darker blue shade on hover */
+}
+
+.is-visible {
+  display: block;
 }
